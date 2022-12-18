@@ -30,4 +30,8 @@
   .form button {
     @apply block ml-auto mt-5 bg-indigo-600 text-white px-4 py-2 rounded-md transition focus:outline-none focus:bg-indigo-500 focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:scale-105 active:scale-95;
   }
+
+  .form p.error-message {
+    @apply mt-2 mb-0 text-red-500;
+  }
 }
