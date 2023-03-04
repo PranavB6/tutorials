@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .main {
+    @apply mt-10 mx-auto container w-1/3 prose;
+  }
+
+  .form {
+    @apply grid grid-cols-1 gap-6;
+  }
+
+  .form label {
+    @apply text-gray-700;
+  }
+
+  .form label[data-required="true"]::after {
+    @apply ml-1 text-red-500;
+    content: "*";
+  }
+
+  .form input[type="text"],
+  .form input[type="email"],
+  .form input[type="date"],
+  .form select,
+  .form textarea {
+    @apply mt-1 block w-full rounded-md border-gray-300 shadow-sm;
+
+    /* for focus state */
+    @apply focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50;
+  }
+
+  .form input[type="checkbox"] {
+    @apply mr-3 rounded border-gray-300 text-indigo-600 shadow-sm;
+
+    /* for focus state */
+    @apply focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50;
+  }
+
+  .form button {
+    @apply block ml-auto mt-5 bg-indigo-600 text-white px-4 py-2 rounded-md transition;
+
+    /* for focus state */
+    @apply focus:outline-none focus:bg-indigo-500 focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:scale-105 active:scale-95;
+  }
+
+  .form p.error-message {
+    @apply mt-2 mb-0 text-red-500;
+  }
+}
