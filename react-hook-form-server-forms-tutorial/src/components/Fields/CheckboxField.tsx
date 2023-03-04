@@ -1,20 +1,18 @@
+import React from "react";
 import { useFormContext } from "react-hook-form";
 import { CheckboxFieldAttributes } from "../../models/FieldAttributes";
 
-type CheckboxFieldProps = CheckboxFieldAttributes;
-
-const CheckboxField: React.FC<CheckboxFieldProps> = (props) => {
-  const {
-    register,
-    formState: { errors },
-  } = useFormContext();
+const CheckboxField: React.FC<CheckboxFieldAttributes> = ({
+  label,
+  name,
+  type,
+}) => {
+  const { register } = useFormContext();
 
   return (
     <div>
-      <input {...register(props.name)} id={props.name} type="checkbox" />
-      <label htmlFor={props.name} data-required={props.config?.required}>
-        {props.label}
-      </label>
+      <input {...register(name)} type="checkbox" id={name} />
+      <label htmlFor={name}>{label}</label>
     </div>
   );
 };

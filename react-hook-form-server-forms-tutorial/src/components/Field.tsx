@@ -1,25 +1,19 @@
-import FieldAttributes, { FieldTypes } from "../models/FieldAttributes";
-import CheckboxField from "./Fields/CheckboxField";
-import DropdownField from "./Fields/DropdownField";
+import React from "react";
+import FieldAttributes, { FieldType } from "../models/FieldAttributes";
 import InputField from "./Fields/InputField";
-import TextareaField from "./Fields/TextareaField";
+import SelectField from "./Fields/SelectField";
+import CheckboxField from "./Fields/CheckboxField";
 
-type FieldProps = FieldAttributes;
-
-const Field: React.FC<FieldProps> = (props) => {
+const Field: React.FC<FieldAttributes> = (props) => {
   switch (props.type) {
-    case FieldTypes.TEXT:
+    case FieldType.TEXT:
       return <InputField {...props} />;
-    case FieldTypes.DROPDOWN:
-      return <DropdownField {...props} />;
-    case FieldTypes.CHECKBOX:
+    case FieldType.SELECT:
+      return <SelectField {...props} />;
+    case FieldType.CHECKBOX:
       return <CheckboxField {...props} />;
-    case FieldTypes.TEXTAREA:
-      return <TextareaField {...props} />;
     default:
-      // props.type is never because it should not be anything else other than the cases above
-      // @ts-expect-error
-      throw new Error(`Field type not supported: ${props.type}`);
+      throw new Error("Invalid Field Type");
   }
 };
 

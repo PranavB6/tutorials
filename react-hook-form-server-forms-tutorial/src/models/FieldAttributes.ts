@@ -1,48 +1,38 @@
-enum FieldTypes {
+enum FieldType {
   TEXT = "text",
-  DROPDOWN = "dropdown",
+  SELECT = "select",
   CHECKBOX = "checkbox",
-  TEXTAREA = "textarea",
 }
 
 interface BaseFieldAttributes {
-  name: string;
-  type: string;
   label: string;
-  config?: {
-    required?: boolean;
-    placeholder?: string;
-  };
+  name: string;
+  type: FieldType;
 }
 
 interface InputFieldAttributes extends BaseFieldAttributes {
-  type: FieldTypes.TEXT;
-}
-
-interface DropdownFieldAttributes extends BaseFieldAttributes {
-  type: FieldTypes.DROPDOWN;
-  options: { value: string; label: string }[];
+  type: FieldType.TEXT;
 }
 
 interface CheckboxFieldAttributes extends BaseFieldAttributes {
-  type: FieldTypes.CHECKBOX;
+  type: FieldType.CHECKBOX;
 }
 
-interface TextareaFieldAttributes extends BaseFieldAttributes {
-  type: FieldTypes.TEXTAREA;
+// IMPORTANT: By setting the type to FieldType.SELECT, we are telling TypeScript that the 'options' property is required, so now we will get errors when the 'options' property is missing! This is a great thing!
+interface SelectFieldAttributes extends BaseFieldAttributes {
+  type: FieldType.SELECT;
+  options: { label: string; value: string }[];
 }
 
 type FieldAttributes =
   | InputFieldAttributes
-  | DropdownFieldAttributes
-  | TextareaFieldAttributes
+  | SelectFieldAttributes
   | CheckboxFieldAttributes;
 
 export default FieldAttributes;
 export {
-  FieldTypes,
+  FieldType,
   type InputFieldAttributes,
-  type TextareaFieldAttributes,
-  type DropdownFieldAttributes,
+  type SelectFieldAttributes,
   type CheckboxFieldAttributes,
 };
